@@ -1,0 +1,23 @@
+<div class="d-flex">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+        <li ngbNavItem="Users">
+        <a ngbNavLink>Users</a>
+        <ng-template ngbNavContent>
+            <app-user-list></app-user-list>
+        </ng-template>
+        </li>
+        <li ngbNavItem="middle">
+        <a ngbNavLink>Middle</a>
+        <ng-template ngbNavContent>
+
+        </ng-template>
+        </li>
+        <li ngbNavItem="bottom">
+        <a ngbNavLink>Bottom</a>
+        <ng-template ngbNavContent>
+
+        </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="ml-4"></div>
+</div>
