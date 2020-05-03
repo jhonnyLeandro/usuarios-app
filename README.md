@@ -1,4 +1,3 @@
-# AppUsuarios
+# User expenses and investments management
 
-Angular app to manage the users of the rest-api project
-
+the intent of this app is to manage the expenses and investment of our users.
