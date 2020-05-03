@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-user',
@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class AddUserComponent implements OnInit {
 
   constructor() { }
+  @Output() messageEvent = new EventEmitter<boolean>();
 
   ngOnInit(): void {
+  }
+
+  sendMessage() {
+    this.messageEvent.emit(false);
   }
 
 }
