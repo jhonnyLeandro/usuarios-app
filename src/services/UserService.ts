@@ -21,5 +21,9 @@ export class UserService {
   get(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.apiServer + 'users/get');
   }
+
+  post(user):Observable<any[]> {
+    return this.httpClient.post<any[]>(this.apiServer+'users/post',user);
+  }
   
 }
