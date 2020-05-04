@@ -1,4 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../services/UserService';
+import { User } from './user';
+import { UpdateUsersService } from '../update-users.service';
 
 @Component({
   selector: 'app-add-user',
@@ -7,7 +10,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  user = new User (1,"","",new Date(),new Date());
+
+  constructor(
+      private userService: UserService,
+      private updateUser: UpdateUsersService
+    ) { }
+
   @Output() messageEvent = new EventEmitter<boolean>();
 
   ngOnInit(): void {
@@ -15,6 +24,14 @@ export class AddUserComponent implements OnInit {
 
   sendMessage() {
     this.messageEvent.emit(false);
+    this.postUser();
+  }
+
+  postUser(){
+    this.userService.post(this.user).subscribe((data:any[])=> {
+      console.log(data);
+      this.updateUser.updateUsers();
+    });
   }
 
 }
