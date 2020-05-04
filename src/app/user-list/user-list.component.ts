@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services/UserService'
+import { UpdateUsersService } from '../update-users.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -8,21 +10,33 @@ import { UserService } from '../../services/UserService'
 })
 export class UserListComponent implements OnInit {
 
+  updateUsersEvent:Subscription;
+
   users = [];
 
   @Output() messageEvent = new EventEmitter<boolean>();
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private updateUsers: UpdateUsersService
+    ) {
+      this.updateUsersEvent = this.updateUsers.getEvent().subscribe(()=> {
+        this.ngOnInit();
+      })
+    }
 
   ngOnInit(){
-    this.userService.get().subscribe((data: any[])=>{
-      this.users = data;
-      console.log (this.users);
-    })  
+    this.getUsers();
   }
 
   sendMessage() {
     this.messageEvent.emit(true);
+  }
+
+  getUsers(){
+    this.userService.get().subscribe((data: any[])=>{
+      this.users = data;
+    })
   }
 
 }
