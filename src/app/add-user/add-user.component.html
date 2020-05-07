@@ -21,6 +21,7 @@
             <input type="text" class="form-control" id="inputLastName"  [(ngModel)]="user.lastName"  placeholder="Enter Last Name" required name="lastName" (keyup)="checkIfInputIsempty($event)">
           </div>
           <button  class="btn btn-primary" (click)="sendMessage()" [disabled] = "!isEnabled ? 'disabled' : null">Submit</button>
+          <button  class="btn btn-secondary" (click)="deleteForm()" >Cancel</button>
         </form>
       </div>
       <div class="col-sm"></div>
