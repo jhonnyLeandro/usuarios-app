@@ -14,13 +14,20 @@
         <form  #form="ngForm">
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" class="form-control" id="InputFirstName"  [(ngModel)]="user.firstName" placeholder="Enter First Name" required name="firstName" (keyup)="checkIfInputIsempty($event)">
+            <input type="text" class="form-control" id="InputFirstName"  [(ngModel)]="user.firstName" placeholder="Enter First Name" required name="firstName" (keyup)="checkFirstName($event)">
+          </div>
+
+          <div class="alert alert-danger" *ngIf = "showAlertFirstName" role="alert">
+            Please fill out the first name field
           </div>
           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" class="form-control" id="inputLastName"  [(ngModel)]="user.lastName"  placeholder="Enter Last Name" required name="lastName" (keyup)="checkIfInputIsempty($event)">
+            <input type="text" class="form-control" id="inputLastName"  [(ngModel)]="user.lastName"  placeholder="Enter Last Name" required name="lastName" (keyup)="checkLastName($event)">
           </div>
-          <button  class="btn btn-primary" (click)="sendMessage()" [disabled] = "!isEnabled ? 'disabled' : null">Submit</button>
+          <div class="alert alert-danger" role="alert" *ngIf = "showAlertLastName">
+            Please fill out the last name field
+          </div>
+          <button  class="btn btn-primary" (click)="sendMessage()">Submit</button>
           <button  class="btn btn-secondary" (click)="deleteForm()" >Cancel</button>
         </form>
       </div>
