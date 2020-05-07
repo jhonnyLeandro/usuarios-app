@@ -1,1 +1,5 @@
 <app-navbar></app-navbar>
+<app-user-list (messageEvent)="receiveMessage($event)"></app-user-list>
+<div *ngIf = "isVisibleForm">
+    <app-add-user (messageEvent)="receiveMessage($event)"></app-add-user>
+</div>

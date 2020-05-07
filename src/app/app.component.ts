@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
+  isVisibleForm:boolean = false;
+
+  receiveMessage(message:boolean) {
+    this.isVisibleForm = message
+  }
+
 }

@@ -19,7 +19,11 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   get(): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.apiServer + 'users');
+    return this.httpClient.get<any[]>(this.apiServer + 'users/get');
+  }
+
+  post(user):Observable<any[]> {
+    return this.httpClient.post<any[]>(this.apiServer+'users/post',user);
   }
   
 }
