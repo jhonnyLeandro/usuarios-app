@@ -11,7 +11,7 @@ import { UpdateUsersService } from '../update-users.service';
 export class AddUserComponent implements OnInit {
 
   user = new User (1,"","",new Date(),new Date());
-
+  isEnabled = false;
   constructor(
       private userService: UserService,
       private updateUser: UpdateUsersService
@@ -32,6 +32,12 @@ export class AddUserComponent implements OnInit {
       console.log(data);
       this.updateUser.updateUsers();
     });
+  }
+
+  checkIfInputIsempty(event:any){
+    if (this.user.firstName !== '' && this.user.lastName !== '') {
+      this.isEnabled = true;
+    }
   }
 
 }
