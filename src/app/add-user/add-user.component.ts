@@ -12,6 +12,9 @@ export class AddUserComponent implements OnInit {
 
   user = new User (1,"","",new Date(),new Date());
 
+  showAlertFirstName = false;
+  showAlertLastName = false;
+
   constructor(
       private userService: UserService,
       private updateUser: UpdateUsersService
@@ -23,8 +26,17 @@ export class AddUserComponent implements OnInit {
   }
 
   sendMessage() {
+    if (this.user.firstName === '' || this.user.lastName === '') {
+      this.showAlertFirstName =  this.user.firstName === '' ? true : false;
+      this.showAlertLastName = this.user.lastName === '' ? true : false;
+    } else {
+      this.deleteForm();
+      this.postUser();
+    }
+  }
+
+  deleteForm(){
     this.messageEvent.emit(false);
-    this.postUser();
   }
 
   postUser(){
@@ -32,6 +44,14 @@ export class AddUserComponent implements OnInit {
       console.log(data);
       this.updateUser.updateUsers();
     });
+  }
+
+  checkFirstName(event:any){
+    this.showAlertFirstName = false;
+  }
+
+  checkLastName(event:any){
+    this.showAlertLastName = false;
   }
 
 }
