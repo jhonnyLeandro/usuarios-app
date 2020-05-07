@@ -23,8 +23,12 @@ export class AddUserComponent implements OnInit {
   }
 
   sendMessage() {
-    this.messageEvent.emit(false);
+    this.deleteForm();
     this.postUser();
+  }
+
+  deleteForm(){
+    this.messageEvent.emit(false);
   }
 
   postUser(){
